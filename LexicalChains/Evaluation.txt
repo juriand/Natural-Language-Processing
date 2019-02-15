@@ -1,0 +1,100 @@
+Juanyan Wang
+A20411039
+
+1.Evaluation for lexical chains:
+Example text 1:
+A single engine airplane crashed Tuesday into a ditch beside a dirt road on the outskirts of Albuquerque, killing all five people aboard authorities said. 
+Four adults and one child died in the crash, which witnesses said occurred about 5 p.m., when it was raining, Albuquerque police Sgt. R.C. Porter said.
+The airplane was attempting to land at nearby Coronado Airport, Porter said. 
+It aborted its first attempt and was coming in for a second try when it crashed, he said.
+
+Output lexical chains:
+Chain 1: single(1), one(1)
+Chain 2: engine(1)
+Chain 3: airplane(2)
+Chain 4: tuesday(1)
+Chain 5: ditch(1)
+Chain 6: dirt(1)
+Chain 7: road(1)
+Chain 8: outskirts(1)
+Chain 9: albuquerque(2)
+Chain 10: killing(1)
+Chain 11: five(1), 5(1)
+Chain 12: people(1), land(1)
+Chain 13: authorities(1)
+Chain 14: four(1)
+Chain 15: adults(1)
+Chain 16: child(1)
+Chain 17: crash(1)
+Chain 18: witnesses(1)
+Chain 19: pm(1)
+Chain 20: it(3)
+Chain 21: was(3)
+Chain 22: police(1)
+Chain 23: porter(2)
+Chain 24: airport(1)
+Chain 25: its(1)
+Chain 26: first(1)
+Chain 27: attempt(1), try(1)
+Chain 28: coming(1)
+Chain 29: second(1)
+Chain 30: he(1)
+
+Example text 2:
+The Chandler Police Department was investigating a minor injury collision involving a self-driving vehicle Friday afternoon. According to police, a Honda sedan driving eastbound on Chandler Boulavard near Chandler Fashion Center swerved to avoid another vehicle and struck a Waymo autonomous vehicle traveling in the opposite direction. The Waymo vehicle was traveling at a slow speed and in autonomous mode. The operator in the driver’s seat sustained minor injuries. Police said the self-driving vehicle was not at fault. “The Waymo vehicle is not the violator vehicle. It just happened to be in the wrong place at the wrong time,” Chandler police detective Seth Tyler told Phoenix New Times. Two months ago, an Uber autonomous vehicle struck and killed a pedestrian in Tempe. Uber suspended its self-driving vehicle testing after that incident. The head of Waymo, formerly Google’s driverless car project, said at the time his company’s technology could have avoided that accident.
+
+Output lexical chains:
+Chain 1: chandler(4)
+Chain 2: police(4)
+Chain 3: department(1)
+Chain 4: was(3)
+Chain 5: investigating(1), testing(1)
+Chain 6: minor(2)
+Chain 7: injury(1), wrong(2), accident(1)
+Chain 8: collision(1)
+Chain 9: vehicle(9)
+Chain 10: friday(1)
+Chain 11: afternoon(1)
+Chain 12: sedan(1), car(1)
+Chain 13: driving(1), traveling(2), direction(1)
+Chain 14: fashion(1), mode(1)
+Chain 15: center(1), seat(1), place(1)
+Chain 16: opposite(1)
+Chain 17: speed(1)
+Chain 18: operator(1)
+Chain 19: injuries(1)
+Chain 20: fault(1)
+Chain 21: violator(1)
+Chain 22: it(1), technology(1)
+Chain 23: be(1)
+Chain 24: detective(1)
+Chain 25: seth(1)
+Chain 26: tyler(1)
+Chain 27: phoenix(1)
+Chain 28: times(1)
+Chain 29: two(1)
+Chain 30: months(1)
+Chain 31: an(1)
+Chain 32: pedestrian(1)
+Chain 33: its(1)
+Chain 34: incident(1)
+Chain 35: head(1)
+Chain 36: project(1)
+Chain 37: time(1)
+Chain 38: have(1)
+
+It works well to connect some relevant words like "single" and "one", "attempt" and "try". But the connection of "people" and "land" or "technology" and "it" may not be very reasonable. Besides, it should be more reasonable to group "people", "child" and "adult" into one chain.
+
+
+2.Evaluation for summarizer:
+Every chain is given a score according the size of words. If one sentence contains the word of one chain, it will be added the corresponding score. Finally, extract the top 30% sentences as summary.
+
+Use the example 1, the result is:
+A single engine airplane crashed Tuesday into a ditch beside a dirt road on the outskirts of Albuquerque, killing all five people aboard authorities said.
+
+Use the example 2, the result is:
+The Chandler Police Department was investigating a minor injury collision involving a self-driving vehicle Friday afternoon. 
+According to police, a Honda sedan driving eastbound on Chandler Boulavard near Chandler Fashion Center swerved to avoid another vehicle and struck a Waymo autonomous vehicle traveling in the opposite direction. 
+The Waymo vehicle was traveling at a slow speed and in autonomous mode. 
+
+It works fine to extract the most important sentences.

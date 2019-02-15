@@ -1,0 +1,1 @@
+This project uses JWI lib to access Wordnet.
